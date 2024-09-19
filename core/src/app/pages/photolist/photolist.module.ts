@@ -1,4 +1,3 @@
-import {AppPipeModule} from './../../pipes/pipes.module';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
@@ -14,7 +13,6 @@ import {WmPipeModule} from 'wm-core/pipes/pipe.module';
     IonicModule,
     PhotolistPageRoutingModule,
     WmPipeModule,
-    AppPipeModule,
   ],
   declarations: [PhotolistPage],
 })

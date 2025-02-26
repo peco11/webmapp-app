@@ -28,7 +28,7 @@
     "cordova-res": "0.15.4"
   },
   "name": "webmapp-app",
-  "version": "2.12.18",
+  "version": "3.0.0",
   "author": "Webmapp S.r.l.",
   "homepage": "https://webmapp.it/",
   "scripts": {

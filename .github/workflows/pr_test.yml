@@ -1,0 +1,22 @@
+on:
+  pull_request:
+    branches:
+      - oc_5019
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log a message
+        run: echo "La GitHub Action è stata eseguita con successo!"
+
+    #   - name: Set up Node.js
+    #     uses: actions/setup-node@v2
+    #     with:
+    #       node-version: 18
+
+    #   - name: Install Dependencies
+    #     run: npm install
+
+    #   - name: Install Ionic CLI
+    #     run: npm install -g @ionic/cli

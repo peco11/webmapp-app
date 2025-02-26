@@ -28,11 +28,16 @@ jobs:
       - name: Display Cypress.env.json content
         run: cat Cypress.env.json
 
-      - name: Start Application & Run Tests
+      - name: Start Application
+        run: |
+          cd core
+          ionic serve &
+        shell: bash
+
+      - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          start: ionic serve
           wait-on: http://localhost:8100
           wait-on-timeout: 280
           headed: false

@@ -25,19 +25,15 @@ jobs:
         run: |
           echo '{ "email": "${{ secrets.TEST_EMAIL }}", "password": "${{ secrets.TEST_PASSWORD }}" }' > Cypress.env.json
 
-      - name: Display Cypress.env.json content
-        run: cat Cypress.env.json
-
-      - name: Start Application
+      - name: Update geohubId in environment.ts
         run: |
-          cd core
-          ionic serve &
-        shell: bash
+          sed -i 's/geohubId: 3/geohubId: 52/' webmapp-app/core/src/environments/environment.ts
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
+          start: cd core && ionic serve
           wait-on: http://localhost:8100
           wait-on-timeout: 280
           headed: false

@@ -47,6 +47,7 @@ export function e2eLogin(
   goProfile();
   cy.get('.wm-profile-logged-out-login-button').click();
   cy.get('ion-input[formcontrolname="email"] input').focus().clear().type(email);
+  cy.wait(200);
   cy.get('ion-input[formcontrolname="password"] input').focus().clear().type(password);
   cy.get('.wm-login-submit-button').click();
   return cy.wait('@loginRequest').its('response.body');
@@ -149,5 +150,6 @@ export const data = {
   },
   pois: {
     exampleOne: 'Poi example one',
+    exampleTwo: 'Poi example two',
   },
 };

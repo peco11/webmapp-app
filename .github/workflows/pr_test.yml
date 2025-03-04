@@ -26,7 +26,7 @@ jobs:
       - name: Create Cypress.env.json file
         run: |
           echo '{ "email": "${{ secrets.TEST_EMAIL }}", "password": "${{ secrets.TEST_PASSWORD }}" }' > Cypress.env.json
-          
+
       - name: Update geohubId in environment.ts
         run: |
           sed -i 's/geohubId: 3/geohubId: 52/' core/src/environments/environment.ts
@@ -47,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: core/cypress/screenshots

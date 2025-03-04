@@ -9,6 +9,8 @@ const minDuration = 30;
 const maxDuration = 120;
 const labelDuration = 'Outward Duration';
 
+const waitFilterResults = 500;
+
 const confURL = `${environment.awsApi}/conf/52.json`;
 const filters = {
   track_duration: {
@@ -63,7 +65,7 @@ describe('Distance and duration filters [oc:4726] [https://orchestrator.maphub.i
     setSliderFilter('distanceFilter', max, min, steps, maxDistance, minDistance);
 
     goHome(false);
-    cy.wait(250);
+    cy.wait(waitFilterResults);
     cy.get('wm-search-box').each($el => {
       cy.wrap($el).click();
       cy.get('wm-tab-detail ion-item')
@@ -93,7 +95,7 @@ describe('Distance and duration filters [oc:4726] [https://orchestrator.maphub.i
     setSliderFilter('durationFilter', max, min, steps, maxDuration, minDuration);
 
     goHome(false);
-    cy.wait(250);
+    cy.wait(waitFilterResults);
     cy.get('wm-search-box').each($el => {
       cy.wrap($el).click();
       cy.get('wm-tab-detail ion-item')

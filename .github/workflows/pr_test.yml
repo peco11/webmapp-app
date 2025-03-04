@@ -1,0 +1,50 @@
+on:
+  pull_request:
+    branches:
+      - oc_5019
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Ionic CLI
+        run: npm install -g @ionic/cli
+
+      - name: Create Cypress.env.json file
+        run: |
+          echo '{ "email": "${{ secrets.TEST_EMAIL }}", "password": "${{ secrets.TEST_PASSWORD }}" }' > Cypress.env.json
+          
+      - name: Update geohubId in environment.ts
+        run: |
+          sed -i 's/geohubId: 3/geohubId: 52/' core/src/environments/environment.ts
+
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          start: ionic serve
+          working-directory: core
+          wait-on: http://localhost:8100
+          wait-on-timeout: 280
+          headed: false
+          config: defaultCommandTimeout=5000,pageLoadTimeout=10000,viewportWidth=412,viewportHeight=832,testIsolation=false
+
+      - name: Upload Cypress Screenshots on Failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots

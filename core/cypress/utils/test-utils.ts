@@ -149,5 +149,6 @@ export const data = {
   },
   pois: {
     exampleOne: 'Poi example one',
+    exampleTow: 'Poi example two',
   },
 };

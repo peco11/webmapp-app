@@ -25,7 +25,7 @@ jobs:
 
       - name: Create Cypress.env.json file
         run: |
-          echo '{ "email": "${{ secrets.TEST_EMAIL }}", "password": "${{ secrets.TEST_PASSWORD }}" }' > Cypress.env.json
+          echo '{ "email": "${{ secrets.TEST_EMAIL }}", "password": "${{ secrets.TEST_PASSWORD }}" }' > core/Cypress.env.json
 
       - name: Update geohubId in environment.ts
         run: |
